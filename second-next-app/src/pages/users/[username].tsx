@@ -54,7 +54,7 @@ function UserPage({ username }: { username: string }) {
 
   useEffect(() => {
     async function fetchData() {
-      const req = await fetch(`/api/singleUser?username=${username}`);
+      const req = await fetch(`/api/04/users/username=${username}`);
       const data = await req.json();
 
       setLoading(false);

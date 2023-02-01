@@ -4,11 +4,13 @@ import { promises as fs } from 'fs';
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default async (req: NextApiRequest, res: NextApiResponse) => {
+  console.log('call');
   const {
     query: { username },
   } = req;
-  const jsonDirectory = path.join(process.cwd(), 'json');
+  const jsonDirectory = path.join(process.cwd() + '/src', 'json');
   const fileContents = await fs.readFile(jsonDirectory + '/users.json', 'utf8');
+  console.log(fileContents);
   const users = JSON.parse(fileContents);
   let targetUser = null;
   users.forEach((user: { username: string | string[] | undefined }) => {
