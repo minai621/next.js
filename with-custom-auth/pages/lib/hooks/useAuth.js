@@ -24,6 +24,6 @@ export function useAuth() {
     user,
     loggedIn,
     loading,
-    err,
+    error,
   };
 }
