@@ -1,3 +1,6 @@
+import { encode } from '../lib/jwt';
+import { serialize } from 'cookie';
+
 export default (req, res) => {
   const { method } = req;
   const { email, password } = req.body;
@@ -9,8 +12,13 @@ export default (req, res) => {
     });
 
   const user = authenticateUser(email, password);
-  if (user) return res.json({ user });
-  else
+  if (user) {
+    res.setHeader(
+      'Set-Cookie',
+      serialize('my_auth', user, { path: '/', httpOnly: true })
+    );
+    return res.json({ success: true });
+  } else
     return res.status(401).json({
       error: 'Wrong email of password',
     });
@@ -21,11 +29,11 @@ function authenticateUser(email, password) {
   const validPassword = 'testpassword';
 
   if (email === validEmail && password === validPassword) {
-    return {
+    return encode({
       id: '213213213123213',
       name: 'Minje',
       email: 'minje@test.com',
-    };
+    });
   }
   return null;
 }
