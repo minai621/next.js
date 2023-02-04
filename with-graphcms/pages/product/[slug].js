@@ -54,6 +54,17 @@ function SelectQuantity(props) {
 }
 
 export default function ProductPage({ product }) {
+  const [quantity, setQuantity] = useState(0);
+  const { items, setItems } = useContext(CartContext);
+
+  const alreadInCard = product.id in items;
+
+  function addToCart() {
+    setItems({
+      ...items,
+      [product.id]: quantity,
+    });
+  }
   return (
     <Flex rounded='xl' boxShadow='2xl' w='full' p='16' bgColor='white'>
       <Image height='96' width='96' src={product.images[0].url} />
@@ -75,8 +86,12 @@ export default function ProductPage({ product }) {
         </Text>
         <Divider my='6' />
         <Grid gridTemplateColumns='2fr 1fr' gap='5' alignItems='center'>
-          <SelectQuantity onChange={() => {}} />
-          <Button colorScheme='blue'>Add to Cart</Button>
+          <SelectQuantity
+            onChange={(quantity) => setQuantity(parseInt(quantity))}
+          />
+          <Button colorScheme='blue' onClick={addToCart}>
+            {alreadInCard ? 'Update' : 'Add to Cart'}
+          </Button>
         </Grid>
       </Box>
     </Flex>

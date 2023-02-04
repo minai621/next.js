@@ -1,8 +1,12 @@
 import Link from 'next/link';
 import { Flex, Box, Button, Text } from '@chakra-ui/react';
 import { MdShoppingCart } from 'react-icons/md';
+import { useContext } from 'react';
+import CartContext from '@/lib/context/Cart';
 
 export default function NavBar() {
+  const { items } = useContext(CartContext);
+  const itemsCount = Object.values(items).reduce((x, y) => x + y, 0);
   return (
     <Box
       position='fixed'
@@ -22,6 +26,7 @@ export default function NavBar() {
           <Link href='/cart' passHref>
             <Button>
               <MdShoppingCart />
+              <Text ml='3'>{itemsCount}</Text>
             </Button>
           </Link>
         </Box>
