@@ -4,6 +4,7 @@ import { Box, Button, Divider, Flex, Text } from '@chakra-ui/react';
 import CartContext from '@/lib/context/Cart';
 import getProductsById from '@/lib/graphql/queries/getProductsById';
 import graphql from '@/lib/graphql';
+import { loadStripe } from '@stripe/stripe-js';
 
 export default function Cart() {
   const { items } = useContext(CartContext);
@@ -37,7 +38,9 @@ export default function Cart() {
   }
 
   async function handlePayment() {
-    const stripe = await loadStripe();
+    const stripe = await loadStripe(
+      process.env.NEXT_PUBLIC_STRIPE_SHARABLE_KEY
+    );
 
     const res = await fetch('/api/checkout', {
       method: 'POST',
