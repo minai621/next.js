@@ -36,6 +36,26 @@ export default function Cart() {
       .toFixed(2);
   }
 
+  async function handlePayment() {
+    const stripe = await loadStripe();
+
+    const res = await fetch('/api/checkout', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        items,
+        success_url: `${window.location.origin}/success`,
+      }),
+    });
+
+    const { session } = await res.json();
+    await stripe.redirectToCheckout({
+      sessionId: session.id,
+    });
+  }
+
   return (
     <Box rounded='xl' boxShadow='2xl' w='container.lg' p='16' bgColor='white'>
       <Text as='h1' fontSize='2xl' fontWeight='bold'>
@@ -77,7 +97,9 @@ export default function Cart() {
               <Text fontSize='xl' fontWeight='bold'>
                 Total: €{getTotal()}
               </Text>
-              <Button colorScheme='blue'>Pay now</Button>
+              <Button colorScheme='blue' onClick={handlePayment}>
+                Pay now
+              </Button>
             </Flex>
           </>
         )}
