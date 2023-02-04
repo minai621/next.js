@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { Box, Button, Divider, Flex, Text } from '@chakra-ui/react';
 import CartContext from '@/lib/context/Cart';
 import getProductsById from '@/lib/graphql/queries/getProductsById';
+import graphql from '@/lib/graphql';
 
 export default function Cart() {
   const { items } = useContext(CartContext);
