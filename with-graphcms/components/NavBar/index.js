@@ -1,7 +1,7 @@
-import { Box, Button, Flex, Text } from '@chakra-ui/react';
 import Link from 'next/link';
-import React from 'react';
-import { MdShoppingCard } from 'react-icons';
+import { Flex, Box, Button, Text } from '@chakra-ui/react';
+import { MdShoppingCart } from 'react-icons/md';
+
 export default function NavBar() {
   return (
     <Box
@@ -21,7 +21,7 @@ export default function NavBar() {
         <Box>
           <Link href='/cart' passHref>
             <Button>
-              <MdShoppingCard />
+              <MdShoppingCart />
             </Button>
           </Link>
         </Box>

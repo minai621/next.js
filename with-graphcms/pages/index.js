@@ -1,7 +1,3 @@
-import Head from 'next/head';
-import Image from 'next/image';
-import { Inter } from '@next/font/google';
-import styles from '@/styles/Home.module.css';
 import graphql from '../lib/graphql';
 import getAllProducts from '@/lib/graphql/queries/getAllProducts';
 import { Grid } from '@chakra-ui/react';
