@@ -23,12 +23,12 @@ export default function NavBar() {
           </Text>
         </Link>
         <Box>
-          <Link href='/cart' passHref>
-            <Button>
+          <Button>
+            <Link href='/cart' passHref>
               <MdShoppingCart />
               <Text ml='3'>{itemsCount}</Text>
-            </Button>
-          </Link>
+            </Link>
+          </Button>
         </Box>
       </Flex>
     </Box>
