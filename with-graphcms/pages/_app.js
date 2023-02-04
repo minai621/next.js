@@ -2,6 +2,7 @@ import NavBar from '@/components/NavBar';
 import CartContext from '@/lib/context/Cart';
 import '@/styles/globals.css';
 import { Box, ChakraProvider, Flex } from '@chakra-ui/react';
+import { useState } from 'react';
 
 export default function App({ Component, pageProps }) {
   const [items, setItems] = useState({});

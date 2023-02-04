@@ -11,6 +11,8 @@ import {
   Text,
 } from '@chakra-ui/react';
 import Image from 'next/image';
+import { useContext, useState } from 'react';
+import CartContext from '@/lib/context/Cart';
 
 export async function getStaticPaths() {
   const { products } = await graphql.request(getAllProducts);
