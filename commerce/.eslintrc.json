@@ -1,0 +1,27 @@
+{
+  "extends": ["next", "next/core-web-vitals", "eslint:recommended"],
+  "plugins": [
+    "prettier",
+    "react",
+    "react-hooks",
+    "@typescript-eslint",
+    "import"
+  ],
+  "rules": {
+    "react/no-unescaped-entities": "off",
+    "@next/next/no-page-custom-font": "off",
+    "react/react-in-jsx-scope": "off",
+    "import/order": [2, { "alphabetize": { "order": "asc" } }],
+    "prettier/prettier": [
+      "error",
+      {
+        "trailingComma": "all",
+        "endOfLine": "lf",
+        "semi": false,
+        "singleQuote": true,
+        "printWidth": 80,
+        "tabWidth": 2
+      }
+    ]
+  }
+}
